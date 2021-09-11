@@ -1,0 +1,73 @@
+# .tcshrc v.1.1
+# DO NOT add ANYTHING from line 1 until line 15
+#
+if ( $?CLUSTERNAME ) then
+  if ( $CLUSTERNAME == "MATRIX" ) then
+    if ( -e "$HOME/.tcshrc.matrix" ) then
+      source $HOME/.tcshrc.matrix 
+    endif
+    exit
+  endif
+endif
+
+## DO NOT add ANYTHING above this line 
+##
+################################################
+# NON-MATRIX PATHS, ETC. HERE ONLY
+#
+# Add any environment variables, aliases and functions here. Please
+# note that this file does not apply when you log in to the MATRIX
+# cluster. Settings for Matrix need to be made in ~/.tcshrc.matrix
+ 
+
+# User specific aliases and functions
+
+set     history=300
+set     savehist=300
+set     cwd=`pwd`
+
+#alias grep 'grep --color=auto'
+
+setenv RSYNC_RSH "ssh -2"
+setenv PATH "$HOME/bin:$PATH"
+alias uahmp '/usr/bin/xfreerdp -g 1900x1000 -d nsstc-uah -u dmeyer uahmp'
+setenv PATH "${PATH}:/common/pkgs/solo3/20160614-EL7/bin:./"
+#setenv PATH "${PATH}:/common/pkgs/solo3/src/test/bin:./"
+alias rstor 'cd /rstor/dmeyer; ls'
+alias rhome 'cd ~; ls'
+alias swp_to_cfradial 'tcsh /rhome/dmeyer/GRA/rad-scripts/swp_to_cfrad.csh'
+alias cfradial_to_swp  'tcsh /rhome/dmeyer/GRA/rad-scripts/cfrad_to_swp.csh'
+
+#McIDAS settings
+setenv PATH "$HOME/bin:$PATH"
+setenv MCHOME /common/pkgs/mcidas/2019-gfortran-EL7
+setenv MCDATA /rhome/dmeyer/mcidas/data/
+
+setenv PATH ${MCHOME}/bin:$PATH
+if ( ! ${?MCPATH} ) then
+setenv MCPATH ${MCDATA}:$MCHOME/data:$MCHOME/help
+setenv MCBIN $MCHOME/bin
+setenv MCGUI $MCHOME/bin
+setenv MCVER `cat $MCHOME/data/VERSION.TXT | sed "s/^\(....\).*/\1/"`
+setenv MCSRC    $MCHOME/mcidas$MCVER/src
+setenv MCTABLE_READ "$MCDATA/MCTABLE.TXT;$MCHOME/data/ADDESITE.TXT"
+setenv MCTABLE_WRITE "$MCDATA/MCTABLE.TXT"
+if ( ! ${?path} ) then
+set path=$MCGUI
+else
+set path=(${MCGUI} $path)
+endif
+endif
+
+#Conda path
+setenv PATH "${PATH}:/nas/rhome/share/opt/pkgs/anaconda/x64/bin:./"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+if ( -f "/common/pkgs/anaconda/x64/etc/profile.d/conda.csh" ) then
+    source "/common/pkgs/anaconda/x64/etc/profile.d/conda.csh"
+else
+    setenv PATH="/common/pkgs/anaconda/x64/bin:$PATH"
+endif
+# <<< conda initialize <<<
+
