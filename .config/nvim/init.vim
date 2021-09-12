@@ -46,10 +46,6 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 " UTF-8 Protocol
 set encoding=utf-8
 
-" YouCompleteMe settings
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
 " Python with virtualenv support
 "py << EOF
 "import os
@@ -64,11 +60,9 @@ map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 if has ('termguicolors')
   set termguicolors
 endif
-
 let g:sonokai_style = 'andromeda'
 "let g:sonokai_enable_italic = 1
 let g:sonokai_disable_italic_comment = 1
-
 colorscheme sonokai
 
 " Make Python code look pretty(?)
