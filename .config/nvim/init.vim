@@ -51,23 +51,14 @@ let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " Python with virtualenv support
-py << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
-EOF
-
-" Solarized colorscheme
-
-" if has('gui_running')
-" set background=dark
-"  colorscheme solarized
-"else
-"  colorscheme zenburn
-"endif
+"py << EOF
+"import os
+"import sys
+"if 'VIRTUAL_ENV' in os.environ:
+"  project_base_dir = os.environ['VIRTUAL_ENV']
+"  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+"  execfile(activate_this, dict(__file__=activate_this))
+"EOF
 
 " Sonokai colorscheme
 if has ('termguicolors')
@@ -84,9 +75,6 @@ colorscheme sonokai
 let python_highlight_all=1
 syntax on
 
-" Solarized switch dark/light mode with F5
-" call togglebg#map("<F5>")
-
 " NerdTree ignore .pyc files
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
@@ -102,3 +90,6 @@ autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | e
 
 " Turn on line numbers
 set nu
+
+" CoC config
+source $HOME/.config/nvim/plug-config/coc.vim
