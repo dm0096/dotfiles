@@ -33,5 +33,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'vim-airline/vim-airline'
     " Intellisense code completion
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    " VimTeX - a Neovim filetype and syntax plugin for LaTeX files
+    Plug 'lervag/vimtex'
 
 call plug#end()
