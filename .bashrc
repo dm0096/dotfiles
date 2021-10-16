@@ -121,8 +121,14 @@ if [ -d "$HOME/bin" ] ; then
     export PATH="$HOME/bin:$PATH"
 fi
 
-# add LROSE scripts to PATH
-export PATH="/usr/local/lrose/bin:$PATH"
+# add scripts to PATH
+export PATH="/usr/local/texlive/2021/bin/x86_64-linux:/usr/local/lrose/bin:$PATH"
+
+# Add to MANPATH
+export MANPATH="$MANPATH:/usr/local/texlive/2021/texmf-dist/doc/man"
+
+# Add to INFOPATH
+export INFOPATH="$INFOPATH:/usr/local/texlive/2021/texmf-dist/doc/info"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
